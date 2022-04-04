@@ -210,6 +210,8 @@ bindsym $mod+t exec i3_automate_scratchpads 'kitty-scratchpad' 'kitty'
 bindsym $mod+c exec i3_automate_scratchpads 'qalculate-scratchpad' 'qalculate-gtk'
 bindsym $mod+apostrophe exec i3_automate_scratchpads 'characters-scratchpad' 'gnome-characters'
 
+for_window [con_mark="qalculate-scratchpad"] resize set 100 100
+
 
 #       _             _               
 #   ___| |_ __ _ _ __| |_ _   _ _ __  
