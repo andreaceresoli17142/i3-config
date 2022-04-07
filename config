@@ -38,6 +38,8 @@ gaps outer 7
 # set window borders
 for_window [class="^.*"] border pixel 3
 
+# set default terminal
+set $term alacritty
 
 #   _              _     _           _ _                 
 #  | | _____ _   _| |__ (_)_ __   __| (_)_ __   __ _ ___ 
@@ -48,7 +50,7 @@ for_window [class="^.*"] border pixel 3
 
 
 # start a terminal
-bindsym $mod+Return exec kitty || i3-sensible-terminal
+bindsym $mod+Return exec $term || i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+q kill
@@ -206,7 +208,7 @@ workspace 0 output DP-5
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 bindsym $mod+b exec i3_automate_scratchpads 'bitwarden-scratchpad' 'bitwarden-desktop'
-bindsym $mod+t exec i3_automate_scratchpads 'kitty-scratchpad' 'kitty'
+bindsym $mod+t exec i3_automate_scratchpads 'alacritty-scratchpad' 'alacritty'
 bindsym $mod+c exec i3_automate_scratchpads 'qalculate-scratchpad' 'qalculate-gtk'
 bindsym $mod+apostrophe exec i3_automate_scratchpads 'characters-scratchpad' 'gnome-characters'
 
