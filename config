@@ -230,7 +230,7 @@ exec picom
 exec caffeine -a
 
 # start feh to set background
-exec feh --bg-fill $(sh .scripts/selectFileFromDir.sh)
+exec feh --bg-fill $(selectFileFromDir)
 
 # configure screens
 exec xrandr --output DP-0 --auto --output DP-5 --auto --scale 1.5x1.5 --right-of DP-0
