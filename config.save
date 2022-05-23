@@ -38,19 +38,6 @@ gaps outer 7
 # set window borders
 for_window [class="^.*"] border pixel 3
 
-# set default terminal
-set $term alacritty
-
-set $coloratt #CD00FF
-set $primaryc #641777
-set $secondry #210021
-
-# class                         border            background        text              indicator       child_border
-client.focused                  $coloratt         $secondry         $coloratt         $coloratt       $primaryc 
-client.focused_inactive         $primaryc         $secondry         $coloratt         $coloratt       #000000
-client.unfocused                $primaryc         $secondry         #888888           $coloratt       #000000
-client.urgent                   #2f343a           #900000           #ffffff           $coloratt       #900000
-client.placeholder              #000000           $secondry         #ffffff           $coloratt       #0c0c0c
 
 #   _              _     _           _ _                 
 #  | | _____ _   _| |__ (_)_ __   __| (_)_ __   __ _ ___ 
@@ -61,7 +48,7 @@ client.placeholder              #000000           $secondry         #ffffff     
 
 
 # start a terminal
-bindsym $mod+Return exec $term || i3-sensible-terminal
+bindsym $mod+Return exec kitty || i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+q kill
@@ -82,10 +69,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-# bindsym $mod+Shift+j move left
-# bindsym $mod+Shift+k move down
-# bindsym $mod+Shift+l move up
-# bindsym $mod+Shift+ograve move right
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+ograve move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -150,9 +137,6 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# logout menu
-bindsym $mod+Shift+l exec "logout-menu"
-
 
 #                      _                                  
 #  __      _____  _ __| | _____ _ __   __ _  ___ ___  ___ 
@@ -162,12 +146,12 @@ bindsym $mod+Shift+l exec "logout-menu"
 #                              |_|                        
 
 
-set $ws1 1
-set $ws2 2
-set $ws3 3
+set $ws1 1 
+set $ws2 2 
+set $ws3 3 
 set $ws4 4
 set $ws5 5
-set $ws6 6
+set $ws6 6 
 set $ws7 7
 set $ws8 8
 set $ws9 9
@@ -200,13 +184,13 @@ bindsym $mod+Shift+0 move container to workspace number $ws0
 workspace 1 output DP-0
 workspace 2 output DP-0
 workspace 3 output DP-0
-workspace 4 output DP-0
-workspace 5 output DP-0
+workspace $ws4 output DP-0
+workspace $ws5 output DP-0
 workspace 6 output DP-5
-workspace 7 output DP-5
-workspace 8 output DP-5
-workspace 9 output DP-5
-workspace 0 output DP-5
+workspace $ws7 output DP-5
+workspace $ws8 output DP-5
+workspace $ws9 output DP-5
+workspace $ws0 output DP-5
 
 
 #                 _       _                     _     
@@ -219,12 +203,9 @@ workspace 0 output DP-5
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 bindsym $mod+b exec i3_automate_scratchpads 'bitwarden-scratchpad' 'bitwarden-desktop'
-bindsym $mod+t exec i3_automate_scratchpads 'alacritty-scratchpad' 'alacritty'
+bindsym $mod+t exec i3_automate_scratchpads 'kitty-scratchpad' 'kitty'
 bindsym $mod+c exec i3_automate_scratchpads 'qalculate-scratchpad' 'qalculate-gtk'
 bindsym $mod+apostrophe exec i3_automate_scratchpads 'characters-scratchpad' 'gnome-characters'
-
-for_window [con_mark="qalculate-scratchpad"] resize set 100 100
-
 
 #       _             _               
 #   ___| |_ __ _ _ __| |_ _   _ _ __  
@@ -234,17 +215,16 @@ for_window [con_mark="qalculate-scratchpad"] resize set 100 100
 #                              |_|    
 
 # start polybar
-# exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec_always $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # start picom to enable terminal transparency
-exec picom 
+exec picom
 
 # caffeine just doesent work
 exec caffeine -a
 
 # start feh to set background
-exec feh --bg-fill $(selectFileFromDir)
+exec feh --bg-fill $(sh .scripts/selectFileFromDir.sh)
 
 # configure screens
-# exec xrandr --output DP-0 --auto --output DP-5 --auto --scale 1.5x1.5 --right-of DP-0
+exec xrandr --output DP-0 --auto --output DP-5 --auto --scale 1.5x1.5 --right-of DP-0
